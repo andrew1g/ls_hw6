@@ -23,6 +23,7 @@ class View
 
     public function render(string $tpl, $data = []): string
     {
+
         foreach ($data as $key => $value) {
             $this->data[$key] = $value;
         }
@@ -33,13 +34,17 @@ class View
     }
 
     public function renderTwig(string $tpl, $data = [])
-    {
-        if (!$this->twig) {
-            $loader = new \Twig\Loader\FilesystemLoader($this->templatePath);
-            $this->twig = new \Twig\Environment($loader);
-        }
+     {
+        print __FILE__;
+        echo 'TEST';
+        //var_dump($data);
+        die;
+    //     if (!$this->twig) {
+    //         $loader = new \Twig\Loader\FilesystemLoader($this->templatePath);
+    //         $this->twig = new \Twig\Environment($loader);
+    //     }
 
-        return $this->twig->render($tpl, $data);
+    //     return $this->twig->render($tpl, $data);
     }
 
 }

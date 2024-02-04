@@ -104,8 +104,8 @@ class Blog extends AbstractController
 
     public function twig()
     {
-        //$this->view->render('test.twig',['text'=>'FIRST TWIG RENDER']);
-        $this->view->pender();
+        $this->view->render('test.twig',['text'=>'FIRST TWIG RENDER']);
+        
     }
 
 }
