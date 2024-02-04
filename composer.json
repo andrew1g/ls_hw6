@@ -1,0 +1,9 @@
+{
+  "autoload": {
+    "psr-4": {"App\\": "app/", "Base\\": "base/"}
+  },
+  "require": {
+    "twig/twig": "^3.8",
+    "swiftmailer/swiftmailer": "^6.3"
+  }
+}

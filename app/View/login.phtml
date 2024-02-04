@@ -1,0 +1,40 @@
+<html>
+<head>
+    <style>
+        .block { display: inline-block; vertical-align: top; text-align: left; }
+        .block input { width: 150px; }
+        .field { width: 150px; display: inline-block; margin-bottom: 5px }
+    </style>
+</head>
+    <body>
+        <h3><?=$this->title;?></h3>
+        <?php
+        /** @var \App\Model\User $user */
+        $user = $this->user;
+    
+        ?>
+        
+    
+        <?php if(empty($user)): ?>
+            
+            <div class="block" style="margin-left: 50px;">
+                <h3>Войти</h3>
+                <form action="/login/auth" method="post">
+                    <div class="field">Email:</div> <input type="text" value="" name="email"><br>
+                    <div class="field">Password:</div> <input type="text" value="" name="password"><br>
+                    <input type="submit" value="Войти">
+                </form>
+                <h3>Зарегистрироваться</h3>
+                <form action="/register" method="post">                    
+                    <input type="submit" value="Зарегистрироваться">
+                </form>
+            </div>            
+    <?php else: ?>
+       
+       Вы вошли как <?php  $user->getName();?>
+        
+    <?php endif; ?>
+
+    </body>
+</head>
+</html>
