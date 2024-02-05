@@ -6,7 +6,7 @@ const DB_PASSWORD = '';
 
 const ADMIN_IDS = [2];
 
-function dd(...$args)
+function dd2(...$args)
 {
     echo '<pre>';
     var_dump($args);

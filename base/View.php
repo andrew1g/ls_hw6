@@ -35,16 +35,13 @@ class View
 
     public function renderTwig(string $tpl, $data = [])
      {
-        print __FILE__;
-        echo 'TEST';
-        //var_dump($data);
-        die;
-    //     if (!$this->twig) {
-    //         $loader = new \Twig\Loader\FilesystemLoader($this->templatePath);
-    //         $this->twig = new \Twig\Environment($loader);
-    //     }
+        
+         if (!$this->twig) {
+             $loader = new \Twig\Loader\FilesystemLoader($this->templatePath);
+             $this->twig = new \Twig\Environment($loader);
+         }
 
-    //     return $this->twig->render($tpl, $data);
+         return $this->twig->render($tpl, $data);
     }
 
 }

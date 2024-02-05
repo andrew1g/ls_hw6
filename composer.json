@@ -4,6 +4,7 @@
   },
   "require": {
     "twig/twig": "^3.8",
-    "swiftmailer/swiftmailer": "^6.3"
+    "swiftmailer/swiftmailer": "^6.3",
+    "intervention/image": "2"
   }
 }
