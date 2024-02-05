@@ -108,4 +108,11 @@ class Blog extends AbstractController
         
     }
 
+
+    public function twig2()
+    {
+        $this->view->renderTwig2();        
+    }
+    
+
 }

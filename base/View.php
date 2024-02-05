@@ -34,14 +34,24 @@ class View
     }
 
     public function renderTwig(string $tpl, $data = [])
-     {
-        
+     {               
          if (!$this->twig) {
+            
              $loader = new \Twig\Loader\FilesystemLoader($this->templatePath);
              $this->twig = new \Twig\Environment($loader);
+            //  echo '<pre>';
+            //  var_dump($this->twig);
+            //  echo '</pre>';
          }
 
          return $this->twig->render($tpl, $data);
     }
+
+
+    public function renderTwig2()
+    {
+       var_dump('test twig2');
+       die;
+   }
 
 }
