@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Янв 28 2024 г., 15:37
--- Версия сервера: 10.4.32-MariaDB
--- Версия PHP: 8.2.12
+-- Время создания: Фев 12 2024 г., 11:35
+-- Версия сервера: 10.4.28-MariaDB
+-- Версия PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- База данных: `ls5mvc`
+-- База данных: `ls6eloquent`
 --
 
 -- --------------------------------------------------------
@@ -28,23 +28,25 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `messages` (
-  `id` int(11) UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
+  `author_id` int(10) UNSIGNED NOT NULL,
   `text` text NOT NULL,
-  `created_at` datetime NOT NULL,
-  `author_id` int(11) NOT NULL,
   `image` text NOT NULL,
-  `image_filename` varchar(1000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `image_filename` varchar(1000) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Дамп данных таблицы `messages`
 --
 
-INSERT INTO `messages` (`id`, `text`, `created_at`, `author_id`, `image`, `image_filename`) VALUES
-(60, 'Первый пост Бориса', '2024-01-28 15:19:33', 2, '', ''),
-(61, 'Второй Пост Бориса', '2024-01-28 15:20:01', 2, '/images/DSC00644.JPG', 'DSC00644.JPG'),
-(62, 'Первый пост Николая', '2024-01-28 15:20:37', 3, '', ''),
-(63, 'Второй пост Николая', '2024-01-28 15:20:49', 3, '/images/DSC00646.JPG', 'DSC00646.JPG');
+INSERT INTO `messages` (`id`, `author_id`, `text`, `image`, `image_filename`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Первый пост Бориса', '/images/company-employees-sharing-thoughts-and-ideas_74855-5469.jpg', 'company-employees-sharing-thoughts-and-ideas_74855-5469.jpg', '2024-02-12 02:39:41', NULL),
+(2, 1, 'Второй пост Бориса', '', '', '2024-02-12 02:39:50', NULL),
+(3, 2, 'Первый пост Андрея', '', '', '2024-02-12 02:40:23', NULL),
+(4, 2, 'Второй пост Андрея', '/images/depositphotos_46633779-stock-illustration-set-of-funny-office-characters.jpg', 'depositphotos_46633779-stock-illustration-set-of-funny-office-characters.jpg', '2024-02-12 02:40:41', NULL),
+(5, 2, 'Третий пост Андрея', '', '', '2024-02-12 04:07:56', NULL);
 
 -- --------------------------------------------------------
 
@@ -53,22 +55,24 @@ INSERT INTO `messages` (`id`, `text`, `created_at`, `author_id`, `image`, `image
 --
 
 CREATE TABLE `users` (
-  `id` int(11) UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `registration_date` datetime NOT NULL,
   `email` varchar(255) NOT NULL,
-  `isadmin` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `isadmin` tinyint(4) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `password`, `registration_date`, `email`, `isadmin`) VALUES
-(1, 'Andrey', '3bb1b1f5a97013f17b02b783d97d06723231309e', '2024-01-27 12:58:16', 'andrey@mail.ru', 0),
-(2, 'Boris', 'bc61b290652ccc0632350a5468c94673d7a3cfa2', '2024-01-27 16:03:07', 'boris@mail.ru', 0),
-(3, 'nikolay', '75235082e00ac4dd724da9cb0f85e59117bc8afc', '2024-01-27 17:16:47', 'nikolay@mail.ru', 0);
+INSERT INTO `users` (`id`, `name`, `password`, `email`, `isadmin`, `created_at`, `updated_at`) VALUES
+(2, 'andrey', 'b63420ddabc24a7afb288ccd239cd73a5ccfad12', 'andrey@mail.ru', 0, NULL, NULL),
+(3, 'leonid', 'd4dbf6563d464af3cb4cda1be14d015be7c5a746', 'leonid@mail.ru', 0, '2024-02-12 06:17:46', NULL),
+(5, 'kostya', '3e81fea2b91c088ec129da880413fd5529722dee', 'kostya@mail.ru', 0, NULL, NULL),
+(6, 'kostya2', '0b68811f6c69bd4acef743eda1acafc3fe36169c', 'kostya2@mail.ru', 0, '2024-02-12 06:26:28', NULL);
 
 --
 -- Индексы сохранённых таблиц
@@ -84,7 +88,8 @@ ALTER TABLE `messages`
 -- Индексы таблицы `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
 -- AUTO_INCREMENT для сохранённых таблиц
@@ -94,13 +99,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
