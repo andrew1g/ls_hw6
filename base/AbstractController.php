@@ -1,7 +1,7 @@
 <?php
 namespace Base;
 
-use App\Model\User;
+use App\Model\Eloquent\User;
 
 class AbstractController
 {

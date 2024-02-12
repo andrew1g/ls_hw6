@@ -1,6 +1,7 @@
 <?php
 require '../vendor/autoload.php';
 require '../base/config.php';
+require '../base/eloquent/init.php';
 
 ini_set('display_errors', 'on');
 ini_set('error_reporting', E_ALL | E_NOTICE);

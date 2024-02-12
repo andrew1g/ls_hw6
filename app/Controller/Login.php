@@ -1,7 +1,7 @@
 <?php
 namespace App\Controller;
 
-use App\Model\User;
+use App\Model\Eloquent\User;
 use Base\AbstractController;
 
 class Login extends AbstractController
@@ -39,5 +39,5 @@ class Login extends AbstractController
         $this->redirect('/blog');
     }
 
-   
+     
 }

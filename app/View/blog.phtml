@@ -15,8 +15,8 @@
 
 Список сообщений: <br>
 <?php
-/** @var $message \App\Model\Message */
-/** @var $user \App\Model\User */
+/** @var $message \App\Model\Eloquent\Message */
+/** @var $user \App\Model\Eloquent\User */
 $user = $this->user;
 ?>
 <?php if($messages = $this->messages): ?>
