@@ -1,6 +1,4 @@
 <?php
-
-//echo __FILE__;
 require '../vendor/autoload.php';
 use Illuminate\Database\Capsule\Manager as Capsule;
 
@@ -65,5 +63,3 @@ class Message extends \Illuminate\Database\Eloquent\Model
 }
 
 
-//d($capsule->getConnection());
-//die;

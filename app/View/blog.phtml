@@ -12,6 +12,14 @@
 <form action="/logout">
     <input type="submit" value="Выйти">
 </form>
+<?php if($this->user->isAdmin()===true): ?>
+            <div class="admin">
+            <form action="/admin/users">
+                <input type="submit" value="Перейти в админку">
+            </form>
+            </div>
+<?php endif; ?>
+
 
 Список сообщений: <br>
 <?php

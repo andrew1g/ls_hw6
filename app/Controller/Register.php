@@ -45,7 +45,7 @@ class Register extends AbstractController
 
         $userData = [
             'name' => $name,
-            'registration_date' => date('Y-m-d H:i:s'),
+            'created_at' => date('Y-m-d H:i:s'),
             'password' => $password,
             'email' => $email,
         ];

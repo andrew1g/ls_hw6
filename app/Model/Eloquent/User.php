@@ -24,6 +24,8 @@ class User extends Model
         return self::query()->limit($limit)->offset($offset)->orderBy('id', 'DESC')->get();
     }
 
+
+
     public static function getByEmail(string $email)
     {
         return self::query()->where('email', '=', $email)->first();
